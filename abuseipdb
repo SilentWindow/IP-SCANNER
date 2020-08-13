@@ -1,0 +1,30 @@
+import requests
+import json
+
+
+with open ("TextFile1.txt") as myfile:
+    reed = [line.rstrip() for line in myfile]
+
+s = 0
+
+while s < len(reed):
+    # Defining the api-endpoint
+    url = 'https://api.abuseipdb.com/api/v2/check'
+    for x in range(len(reed)):
+        querystring = {
+            'ipAddress': reed[s],
+            'maxAgeInDays': '90'
+        }
+
+        headers = {
+            'Accept': 'application/json',
+            'Key': '$your-API-key'
+        }
+
+        response = requests.request(method='GET', url=url, headers=headers, params=querystring)
+
+        # Formatted output
+        decodedResponse = json.loads(response.text)
+        print(json.dumps(decodedResponse, sort_keys=True, indent=4))
+        s = s + 1
+        print("\n")
