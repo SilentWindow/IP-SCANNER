@@ -3,7 +3,7 @@ import requests
 import json
 import time
 	#store API key
-headers = {'API-Key' : 'd0b16e47-5bb2-45ed-89c0-93b593a6aedc', 'Content-Type':'application/json'}
+headers = {'API-Key' : '$your-API-key', 'Content-Type':'application/json'}
 
 with open ("TextFile1.txt") as myfile:
 	reed = [line.rstrip() for line in myfile]
