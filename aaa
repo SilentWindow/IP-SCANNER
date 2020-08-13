@@ -1,0 +1,26 @@
+import requests
+import json
+import time
+
+#Access level	public
+#Request rate	4 requests/minute
+#Daily quota	1000 requests/day
+#Monthly quota	30000 requests/month
+
+with open ("TextFile1.txt") as myfile:
+    reed = [line.rstrip() for line in myfile]
+
+s = 0
+
+while s < len(reed):
+    print("loading...")
+    time.sleep(16)
+    url = 'https://www.virustotal.com/vtapi/v2/url/scan'
+    for x in range(len(reed)):
+        params = {'apikey': '51471bc20d0da21842b4f60880727b89faf7532887dc6782329e5678b7b668d6', 'resource':reed[s], 'scan': '1'}
+
+        response = requests.get(url, params=params)
+
+        print(response.json())
+        print("if no report is found for it in VirusTotal's database. In this case the result will contain a scan_id field that can be used to query the analysis report later on.")
+    s = s + 1
